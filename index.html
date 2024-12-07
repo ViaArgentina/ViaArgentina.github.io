@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vía Argentina</title>
+    <style>
+    /* Estilos generales */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Fuentes y tipografía */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #ffd16d;
+        color: #333;
+        overflow-x: hidden;
+    }
+
+    footer {
+        background-color: #333;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    /* Estilos del header */
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url('img/vargentina.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        height: 500px; /* Ajusta la altura del header */
+        padding: 50px;
+    }
+
+    header h1 {
+        font-size: 3em;
+        margin-bottom: 20px; /* Espacio entre el título y el botón */
+    }
+
+    header a.info-button {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 15px 30px;
+        background-color: orange;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5em;
+        border-radius: 8px;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    header a.info-button:hover {
+        background-color: #444;
+        transform: scale(1.1);
+    }
+
+    /* Estilos de navegación */
+    nav {
+        display: flex;
+        justify-content: center;
+        background-color: #333;
+        padding: 10px 0;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: white;
+        margin: 0 15px;
+        font-weight: bold;
+        transition: transform 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+        transform: scale(1.1);
+        color: #ffe66d;
+    }
+
+    /* Breve Información sobre Boca la Caja */
+    .brief-info {
+        text-align: center;
+        padding: 40px 20px;
+        background-color: #fff;
+        margin-top: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .brief-info p {
+        font-size: 1.2em;
+        line-height: 1.8;
+    }
+
+    /* Estilos del Carrusel */
+    .carousel-container {
+        position: relative;
+        overflow: hidden;
+        margin-top: 30px;
+    }
+
+    .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    .carousel-item {
+        position: relative;
+        width: 33.33%; /* Tres imágenes por fila */
+        padding: 0 10px;
+        box-sizing: border-box;
+        transition: transform 0.3s ease;
+    }
+
+    .carousel-item:hover {
+        transform: scale(1.05);
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+    }
+
+    .carousel-item p {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    /* Estilos de los botones del carrusel */
+    .carousel-button {
+        position: absolute;
+        top: 50%;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+        z-index: 10;
+        transform: translateY(-50%);
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    /* Estilos para pantallas pequeñas */
+    @media (max-width: 768px) {
+        .carousel-item {
+            width: 50%; /* Dos imágenes por fila */
+        }
+    }
+
+    /* Estilos para pantallas muy pequeñas (móviles) */
+    @media (max-width: 480px) {
+        .carousel-item {
+            width: 100%; /* Una imagen por fila */
+        }
+    }
+    .gallery-section {
+    padding: 40px 20px;
+    margin: 0 auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Estilo de las imágenes y videos */
+.gallery-item {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img,
+.gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item p {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    header p {
+        font-size: 1.2em;
+    }
+
+    .gallery-item {
+        height: 250px;
+    }
+
+    .info-button {
+        font-size: 1.3em;
+    }
+
+    .brief-info p {
+        font-size: 1.1em;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+</style>
+
+</head>
+<body>
+    <nav>
+        <a href="#galeria">Galería de Imágenes</a>
+        <a href="#video">Galería de Videos</a>
+    </nav>
+
+    <!-- Encabezado -->
+    <header>
+        <h1>Vía Argentina</h1>
+        <a href="info.html" class="info-button">Más Información</a>
+    </header>
+
+    <div id="info" class="brief-info">
+        <p>Vía Argentina es una de las calles más emblemáticas de la Ciudad de Panamá, ubicada en el corazón de El Cangrejo. Con su ambiente vibrante y acogedor, esta calle se ha convertido en un punto de encuentro para locales y turistas. Desde restaurantes con sabores internacionales hasta cafeterías con un toque único, Vía Argentina ofrece una experiencia culinaria diversa y un ambiente perfecto para disfrutar de la vida urbana panameña. Ideal para quienes buscan explorar lo mejor de la gastronomía, el arte y la cultura de la ciudad.</p>
+    </div>
+
+    <br>
+    
+    <br>
+    <section id="galeria" class="section">
+    <div class="gallery-section">
+        <!-- Título de la galería -->
+        <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 20px;">Galería de Imágenes</h2>
+        <div class="grid-container">
+            <!-- Galería de imágenes -->
+            <div class="gallery-item">
+                <img src="img/restaurante.jpg" alt="Imagen 1">
+                <p>Restaurante</p>
+            </div>
+            <div class="gallery-item">
+                <img src="img/minisuper.jpg" alt="Imagen 2">
+                <p>Minisuper</p>
+            </div>
+            <div class="gallery-item">
+                <img src="img/trapiche2.jpg" alt="Imagen 3">
+                <p>Spot para fotos</p>
+            </div>
+            <div class="gallery-item">
+                <img src="img/skate.jpg" alt="Imagen 4">
+                <p>Zona recreativa de skate</p>
+            </div>
+            <div class="gallery-item">
+                <img src="img/metro.jpg" alt="Imagen 5">
+                <p>Metro de via Argentina</p>
+            </div>
+            <div class="gallery-item">
+                <img src="img/fuente.jpg" alt="Imagen 6">
+                <p>Fuente</p>
+            </div>
+            <div class="gallery-item">
+                <img src="img/escuelateatro.jpg" alt="Imagen 7">
+                <p>Centro de Artes Escénicas</p>
+            </div>
+            <div class="gallery-item">
+                <img src="img/edificio.jpg" alt="Imagen 8">
+                <p>Residencias</p>
+            </div>
+             <div class="gallery-item">
+                <img src="img/edificio.jpg" alt="Imagen 8">
+                <p>Residencias</p>
+            </div>
+            <div class="gallery-item">
+    <img src="img/estatua.jpg" alt="Imagen 1">
+    <p>Roberto Durán🥊</p>
+</div>
+<div class="gallery-item">
+    <img src="img/ca.jpg" alt="Imagen 2">
+    <p>Caja de ahorros</p>
+</div>
+<div class="gallery-item">
+    <img src="img/einstein.jpg" alt="Imagen 3">
+    <p>Estatua de Albert Einstein</p>
+</div>
+<div class="gallery-item">
+    <img src="img/fonda.jpg" alt="Imagen 4">
+    <p>Fonda</p>
+</div>
+<div class="gallery-item">
+    <img src="img/parqueentrada.jpg" alt="Imagen 5">
+    <p>Parque</p>
+</div>
+<div class="gallery-item">
+    <img src="img/restaurante3.jpg" alt="Imagen 6">
+    <p>Restaurante el Trapiche</p>
+</div>
+<div class="gallery-item">
+    <img src="img/farmacia2.jpg" alt="Imagen 7">
+    <p>Farmacia</p>
+</div>
+<div class="gallery-item">
+    <img src="img/hotel.jpg" alt="Imagen 8">
+    <p>Hotel</p>
+</div>
+<div class="gallery-item">
+    <img src="img/mural.jpg" alt="Imagen 9">
+    <p>Mural</p>
+</div>
+
+        </div>
+    </section>
+        <br>
+        <section id="video" class="section">
+    <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 20px; margin-top: 40px;">Galería de Videos</h2>
+        <div class="grid-container">
+            <!-- Galería de videos -->
+            <div class="gallery-item">
+                <video controls>
+                    <source src="vid/zona.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+                <p>Zona del metro</p>
+            </div>
+          
+            <div class="gallery-item">
+                <video controls>
+                    <source src="vid/entrevista1.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+                <p>Entrevista 1</p>
+            </div>
+            <div class="gallery-item">
+                <video controls>
+                    <source src="vid/entrevista2.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+                <p>Entrevista 2</p>
+            </div>
+            <div class="gallery-item">
+                <video controls>
+                    <source src="vid/entrevista3.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+                <p>Entrevista 3</p>
+            </div>
+            <div class="gallery-item">
+                <video controls>
+                    <source src="vid/entrevista4.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+                <p>Entrevista 4</p>
+            </div>
+            <div class="gallery-item">
+                <video controls>
+                    <source src="vid/entrada.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+                <p>Caminata por la comunidad</p>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+ <footer>
+        <p>&copy; 2024 Vía Argentina. Todos los derechos reservados. Sarah López, Génesis Silva, Eydelin Juárez, Bárbara Jiménez, Rogers Pérez. </p>
+    </footer>
+</html>
